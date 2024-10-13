@@ -1,7 +1,7 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { graphql } from "react-apollo";
 import { Link } from "react-router";
-import fetchSong from "../queries/fetchSong";
+import fetchSongs from "../queries/fetchSongs";
 import gql from "graphql-tag";
 
 const SongList = ({ mutate, data }) => {
@@ -14,14 +14,13 @@ const SongList = ({ mutate, data }) => {
       variables: {
         id,
       },
-      refetchQueries: [{ query: fetchSong }],
-    });
+    }).then(() => data.refetch());
   };
 
   const renderSongs = () => {
     return songs.map(({ id, title }) => (
       <li key={id} className="collection-item">
-        {title}
+        <Link to={`/songs/${id}`}>{title}</Link>
         <i className="material-icons" onClick={() => onSongDelete(id)}>
           delete
         </i>
@@ -48,4 +47,4 @@ const mutation = gql`
   }
 `;
 
-export default graphql(mutation)(graphql(fetchSong)(SongList));
+export default graphql(mutation)(graphql(fetchSongs)(SongList));

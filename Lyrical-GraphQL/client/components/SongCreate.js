@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { graphql } from "react-apollo";
 import { Link, hashHistory } from "react-router";
-import fetchSong from "../queries/fetchSong";
+import fetchSongs from "../queries/fetchSongs";
 import gql from "graphql-tag";
 
 const SongCreate = ({ mutate }) => {
@@ -14,7 +14,7 @@ const SongCreate = ({ mutate }) => {
       variables: {
         title,
       },
-      refetchQueries: [{ query: fetchSong }],
+      refetchQueries: [{ query: fetchSongs }],
     }).then(() => hashHistory.push("/"));
   };
 
