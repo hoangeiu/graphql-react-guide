@@ -5,4 +5,8 @@
 
 `/Lyrical-GraphQL`
 
-- Implement CRUD GraphQL
+- Implement CRUD GraphQL in React
+
+`/auth-graphql-starter-master`
+
+- Implement Authentication App
